@@ -4,6 +4,7 @@ from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from .models.user import User
 # from .models.mango import Mango
 from .models.profile import Profile
+from .models.profile import Likes
 
 class UserAdmin(BaseUserAdmin):
     ordering = ['id']
@@ -41,3 +42,4 @@ class UserAdmin(BaseUserAdmin):
 # class to format the pages:
 admin.site.register(User, UserAdmin)
 admin.site.register(Profile)
+admin.site.register(Likes)
