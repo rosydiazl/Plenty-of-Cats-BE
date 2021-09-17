@@ -3,11 +3,13 @@ from rest_framework import serializers
 
 from .models.profile import Profile
 from .models.user import User
+from .models.likes import Likes
 
 class ProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model = Profile
-        fields = ('id', 'name', 'age', 'breed', 'bio', 'images' 'owner')
+        fields = ('id', 'name', 'age', 'breed', 'bio', 'image', 'owner')
+
 
 class UserSerializer(serializers.ModelSerializer):
     # This model serializer will be used for User creation
@@ -45,3 +47,9 @@ class ChangePasswordSerializer(serializers.Serializer):
     model = get_user_model()
     old = serializers.CharField(required=True)
     new = serializers.CharField(required=True)
+
+class LikeSerializer(serializers.ModelSerializer):
+ # There are nested relationships
+  class Meta:
+      model = Likes
+      fields = '__all__'
