@@ -1,5 +1,5 @@
 #!/bin/bash
-# TOKEN="700997adfb4b1b4b7e6e0889827514d4dfbaf4fc" NAME="Ford" AGE=5 BREED="RB" BIO="Loves food" IMAGES=pic.png sh curl-scripts/profile/create.sh 
+# TOKEN="c1bd351f83f4ff039f0f399d23bdf05b76cbf9d7" NAME="Ford" AGE="10" BREED="Cat" BIO="dsdsd" IMAGE="ddfsfsd" sh curl-scripts/profile/create.sh 
 
 curl "http://localhost:8000/profiles/" \
   --include \
@@ -12,7 +12,7 @@ curl "http://localhost:8000/profiles/" \
       "age": "'"${AGE}"'",
       "breed": "'"${BREED}"'",
       "bio": "'"${BIO}"'",
-      "images": "'"${IMAGES}"'"
+      "image": "'"${IMAGE}"'"
     }
   }'
 
