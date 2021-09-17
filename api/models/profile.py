@@ -1,6 +1,9 @@
 from django.db import models
 from django.contrib.auth import get_user_model
 
+from .user import User
+from .likes import Likes
+
 # Create your models here.
 
 
@@ -9,38 +12,20 @@ class Profile(models.Model):
   # https://docs.djangoproject.com/en/3.0/ref/models/fields/
   name = models.CharField(max_length=100)
   age = models.IntegerField()
-  RUSSIANBLUE = 'RB'
-  PERSIANCAT = 'PC'
-  RAGDOLL = 'RD'
-  SPHYNXCAT = 'SC'
-  BENGALCAT = 'BC'
-  BIRMAN = 'BM'
-  SIBERIANCAT = 'SC'
-  BOMBAYCAT = 'BC'
-  KORAT = 'K'
-  THAICAT = 'TC'
-  BREED_CHOICES = [
-    (RUSSIANBLUE, 'Russian Blue'),
-    (PERSIANCAT, 'Persian Cat'),
-    (RAGDOLL, 'Ragdoll'),
-    (SPHYNXCAT, 'Sphynx Cat'),
-    (BENGALCAT, 'Belgal Cat'),
-    (BIRMAN, 'Birman'),
-    (SIBERIANCAT, 'Siberian Cat'),
-    (BOMBAYCAT, 'Bombay Cat'),
-    (KORAT, 'Korat'),
-    (THAICAT, 'Thai Cat'),
-  ]
   breed = models.CharField(
-    max_length=2,
-    choices=BREED_CHOICES,
-    default=RUSSIANBLUE
+    max_length=100
     )
   bio = models.TextField(max_length=200)
-  images = models.ImageField(upload_to='images/')
+  image = models.CharField(max_length=100)
   owner = models.ForeignKey(
       get_user_model(),
-      on_delete=models.CASCADE
+      on_delete=models.CASCADE,
+      related_name='current_user'
+  )
+  liked_profiles = models.ManyToManyField(
+      User,
+      through=Likes,
+      through_fields=('profile_id', 'user_id')
   )
 
   def __str__(self):
@@ -54,5 +39,6 @@ class Profile(models.Model):
         'name': self.name,
         'age': self.age,
         'breed': self.breed,
-        'bio': self.bio
+        'bio': self.bio,
+        'image': self.image
     }
