@@ -12,25 +12,34 @@ from ..serializers import ProfileSerializer
 class Profiles(generics.ListCreateAPIView):
     permission_classes=(IsAuthenticated,)
     serializer_class = ProfileSerializer
-    def get(self, request):
+    def get(self):
         """Index request"""
-        # Get all the mangos:
-        # mangos = Mango.objects.all()
-        # Filter the mangos by owner, so you can only see your owned mangos
-        profiles = Profiles.objects.filter(owner=request.user.id)
+        # Get all the profiles:
+        # profiles = Profile.objects.all()
+        # Filter the profiles by owner, so you can only see your owned profiles
+        # profiles = Profile.objects.filter(owner=request.user.id)
+        profiles = Profile.objects.all()
         # Run the data through the serializer
         data = ProfileSerializer(profiles, many=True).data
         return Response({ 'profiles': data })
+
+    def get(self, request):
+        """Index request"""
+        # Get all the mangos:
+        userprofile = Profile.objects.filter(owner=request.user.id)
+        # Run the data through the serializer
+        data = ProfileSerializer(userprofile, many=True).data
+        return Response({'userprofile': data})
 
     def post(self, request):
         """Create request"""
         # Add user to request data object
         request.data['profile']['owner'] = request.user.id
-        # Serialize/create mango
+        # Serialize/create profile
         profile = ProfileSerializer(data=request.data['profile'])
         # If the profile data is valid according to our serializer...
         if profile.is_valid():
-            # Save the created mango & send a response
+            # Save the created profile & send a response
             profile.save()
             return Response({ 'profile': profile.data }, status=status.HTTP_201_CREATED)
         # If the data is not valid, return a response with the errors
@@ -63,11 +72,11 @@ class ProfileDetail(generics.RetrieveUpdateDestroyAPIView):
 
     def partial_update(self, request, pk):
         """Update Request"""
-        # Locate Mango
+        # Locate Profile
         # get_object_or_404 returns a object representation of our Mango
         profile = get_object_or_404(Profile, pk=pk)
         # Check the mango's owner against the user making this request
-        if profile.user != profile.owner:
+        if request.user != profile.owner:
             raise PermissionDenied('Unauthorized, this is not your profile.')
 
         # Ensure the owner field is set to the current user's ID
