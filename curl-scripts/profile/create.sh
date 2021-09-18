@@ -1,7 +1,7 @@
 #!/bin/bash
-# TOKEN="c1bd351f83f4ff039f0f399d23bdf05b76cbf9d7" NAME="Ford" AGE="10" BREED="Cat" BIO="dsdsd" IMAGE="ddfsfsd" sh curl-scripts/profile/create.sh 
+# TOKEN="38529e9742ae661e27b53ce040fcfe4916cd0045" NAME="Lise" AGE="6" BREED="df" BIO="sd" sh curl-scripts/profile/create.sh 
 
-curl "http://localhost:8000/profiles/" \
+curl "http://localhost:8000/userprofile/" \
   --include \
   --request POST \
   --header "Content-Type: application/json" \
