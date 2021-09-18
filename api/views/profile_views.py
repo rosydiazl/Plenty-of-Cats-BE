@@ -9,10 +9,10 @@ from ..models.profile import Profile
 from ..serializers import ProfileSerializer
 
 # Create your views here.
-class Profiles(generics.ListCreateAPIView):
+class NewProfile(generics.ListCreateAPIView):
     permission_classes=(IsAuthenticated,)
     serializer_class = ProfileSerializer
-    def get(self):
+    def get(self, request):
         """Index request"""
         # Get all the profiles:
         # profiles = Profile.objects.all()
@@ -21,8 +21,11 @@ class Profiles(generics.ListCreateAPIView):
         profiles = Profile.objects.all()
         # Run the data through the serializer
         data = ProfileSerializer(profiles, many=True).data
-        return Response({ 'profiles': data })
+        return Response({'profiles': data})
 
+class Profiles(generics.ListCreateAPIView):
+    permission_classes=(IsAuthenticated,)
+    serializer_class = ProfileSerializer
     def get(self, request):
         """Index request"""
         # Get all the mangos:
