@@ -16,7 +16,6 @@ class Profile(models.Model):
     max_length=100
     )
   bio = models.TextField(max_length=200)
-  image = models.CharField(max_length=100)
   owner = models.ForeignKey(
       get_user_model(),
       on_delete=models.CASCADE,
@@ -39,6 +38,5 @@ class Profile(models.Model):
         'name': self.name,
         'age': self.age,
         'breed': self.breed,
-        'bio': self.bio,
-        'image': self.image
+        'bio': self.bio
     }
