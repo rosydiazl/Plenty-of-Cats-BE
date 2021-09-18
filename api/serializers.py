@@ -8,7 +8,7 @@ from .models.likes import Likes
 class ProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model = Profile
-        fields = ('id', 'name', 'age', 'breed', 'bio', 'image', 'owner')
+        fields = ('id', 'name', 'age', 'breed', 'bio', 'owner')
 
 
 class UserSerializer(serializers.ModelSerializer):
