@@ -1,5 +1,5 @@
 #!/bin/bash
-# TOKEN="15e037f3d315dbdd0f1fc458814324d533c5e07f" USERID="24" PROFILEID="48" sh curl-scripts/likes/index.sh 
+# TOKEN="0a5e60a85cfdc61c57f76a934923d9e82150a2a0" sh curl-scripts/likes/index.sh
 
 curl "http://localhost:8000/likes/" \
   --include \
