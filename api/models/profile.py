@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth import get_user_model
+from django.db.models.fields import related
 
 from .user import User
 from .likes import Likes
@@ -21,12 +22,6 @@ class Profile(models.Model):
       on_delete=models.CASCADE,
       related_name='current_user'
   )
-  liked_profiles = models.ManyToManyField(
-      User,
-      through=Likes,
-      through_fields=('profile_id', 'user_id')
-  )
-
   def __str__(self):
     # This must return a string
     return f"The cat user named '{self.name}' is {self.age} years old. Breed: {self.breed}. Their bio is {self.bio}"
