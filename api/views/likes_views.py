@@ -5,19 +5,23 @@ from rest_framework import status
 from django.shortcuts import get_object_or_404
 
 from ..models.likes import Likes
+from ..models.profile import Profile
 from ..serializers import LikeSerializer
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.exceptions import PermissionDenied
 
 # Create your views here.
 
 
 class Like(APIView):
+    permission_classes = (IsAuthenticated,)
+    serializer_class = LikeSerializer
     def get(self, request):
         """Index Request"""
-        likes = Likes.objects.all()[:10]
+        likes = Likes.objects.all()
         data = LikeSerializer(likes, many=True).data
-        return Response(data)
+        return Response({'likes': data})
 
-    serializer_class = LikeSerializer
 
     def post(self, request):
         """Post request"""
@@ -31,15 +35,17 @@ class Like(APIView):
 
 
 class LikeDetail(APIView):
+    permission_classes = (IsAuthenticated,)
+    serializer_class = LikeSerializer
     def get(self, request, pk):
         """Show request"""
-        like = get_object_or_404(Like, pk=pk)
+        like = get_object_or_404(Likes, pk=pk)
         data = LikeSerializer(like).data
         return Response(data)
 
     def patch(self, request, pk):
         """Update Request"""
-        like = get_object_or_404(Like, pk=pk)
+        like = get_object_or_404(Likes, pk=pk)
         ms = LikeSerializer(like, data=request.data['likes'])
         if ms.is_valid():
             ms.save()
@@ -48,6 +54,6 @@ class LikeDetail(APIView):
 
     def delete(self, request, pk):
         """Delete Request"""
-        like = get_object_or_404(Like, pk=pk)
+        like = get_object_or_404(Likes, pk=pk)
         like.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)

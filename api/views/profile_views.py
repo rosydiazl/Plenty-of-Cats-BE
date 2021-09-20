@@ -2,7 +2,9 @@ from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.exceptions import PermissionDenied
 from rest_framework import generics, status
+from rest_framework.parsers import MultiPartParser, FormParser
 from django.shortcuts import get_object_or_404
+
 
 # from ..models.mango import Mango
 from ..models.profile import Profile
@@ -24,11 +26,12 @@ class NewProfile(generics.ListCreateAPIView):
         return Response({'profiles': data})
 
 class Profiles(generics.ListCreateAPIView):
+    parser_classes = (MultiPartParser, FormParser)
     permission_classes=(IsAuthenticated,)
     serializer_class = ProfileSerializer
     def get(self, request):
         """Index request"""
-        # Get all the mangos:
+        # Get all the owned profiles:
         userprofile = Profile.objects.filter(owner=request.user.id)
         # Run the data through the serializer
         data = ProfileSerializer(userprofile, many=True).data
