@@ -1,5 +1,5 @@
 #!/bin/bash
-# TOKEN="f7fc21a20196a17b49f35ce07feba2f37277b927" ID="3" sh curl-scripts/profile/delete.sh 
+# TOKEN="b2cc5502785f614a4f4eeeb3dc69afcea886c78e" ID="1" sh curl-scripts/likes/delete.sh 
 
 curl "http://localhost:8000/profiles/${ID}/" \
   --include \
