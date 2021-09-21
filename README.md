@@ -130,6 +130,18 @@ BODY -> none
 HEADERS -> Token
 RESPONSE -> 204 No Content
 
+
+- Data
+data: {
+      profile: {
+        name: profile.name,
+        age: profile.age,
+        breed: profile.breed,
+        bio: profile.bio
+      }
+    }
+
+
 ## Problems to be solved in future iterations
 
 In future iterations, users will be able to:
