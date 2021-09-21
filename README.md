@@ -92,43 +92,43 @@ In regards to my problem-solving strategy, I used a rubber duck to explain to it
 
 ## Routes that the API expects
 
-Verb -> POST 
+VERB -> POST 
 URL -> /userprofile/
-Body -> data
-Headers -> Token
-Response -> 201 Created
+BODY -> data
+HEADERS -> Token
+RESPONSE -> 201 Created
 
 
-Verb -> GET 
+VERB -> GET 
 URL -> /userprofile/
-Body -> none
-Headers -> Token
-Response -> 200 OK
+BODY -> none
+HEADERS -> Token
+RESPONSE -> 200 OK
 
 
-Verb -> DELETE 
+VERB -> DELETE 
 URL -> /userprofile/ + id
-Body -> none
-Headers -> Token
-Response -> 204 No Content
+BODY -> none
+HEADERS -> Token
+RESPONSE -> 204 No Content
 
-Verb -> PATCH 
+VERB -> PATCH 
 URL -> /userprofile/ + id + '/'
-Body -> data
-Headers -> Token
-Response -> 200 OK
+BODY -> data
+HEADERS -> Token
+RESPONSE -> 200 OK
 
-Verb -> POST
+VERB -> POST
 URL -> /likes/
-body -> data
-Headers -> Token
-Response -> 200 OK
+BODY -> data
+HEADERS -> Token
+RESPONSE -> 200 OK
 
-Verb -> DELETE
+VERB -> DELETE
 URL -> /likes/
-body -> none
-Headers -> Token
-Response -> 204 No Content
+BODY -> none
+HEADERS -> Token
+RESPONSE -> 204 No Content
 
 
 ## Installation instructions
