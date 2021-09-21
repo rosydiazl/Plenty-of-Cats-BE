@@ -130,6 +130,14 @@ BODY -> none
 HEADERS -> Token
 RESPONSE -> 204 No Content
 
+## Problems to be solved in future iterations
+
+In future iterations, users will be able to:
+
+1. Upload their own pictures when they're creating a profile and see it displayed on the Bootstrap Card.
+2. 'Match' with other users when they both 'like' each other. 
+3. Chat with their matches (using Socket)
+
 
 ## Installation instructions
 
@@ -143,11 +151,3 @@ RESPONSE -> 204 No Content
 8. Create a psql database for your app
 9. Add the database name to the .env file using the key DB_NAME_DEV
 10. Generate a secret key using this tool and add it to the .env file using the key SECRET
-
-## Problems to be solved in future iterations
-
-In future iterations, users will be able to:
-
-1. Upload their own pictures when they're creating a profile and see it displayed on the Bootstrap Card.
-2. 'Match' with other users when they both 'like' each other. 
-3. Chat with their matches (using Socket)
