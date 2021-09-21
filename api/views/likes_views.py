@@ -17,7 +17,7 @@ class Like(APIView):
     serializer_class = LikeSerializer
     def get(self, request):
         """Index Request"""
-        likes = Likes.objects.all()
+        likes = Likes.objects.filter(owner=request.user.id)
         data = LikeSerializer(likes, many=True).data
         return Response({'likes': data})
 
@@ -25,6 +25,7 @@ class Like(APIView):
     def post(self, request):
         """Post request"""
         print(request.data)
+        request.data['likes']['owner'] = request.user.id
         like = LikeSerializer(data=request.data['likes'])
         if like.is_valid():
             b = like.save()
