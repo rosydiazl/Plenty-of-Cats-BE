@@ -92,7 +92,6 @@ In regards to my problem-solving strategy, I used a rubber duck to explain to it
 
 ## Routes that the API expects
 
-1. 
 Verb -> POST 
 URL -> /userprofile/
 Body -> data
@@ -100,7 +99,6 @@ Headers -> Token
 Response -> 201 Created
 
 
-2. 
 Verb -> GET 
 URL -> /userprofile/
 Body -> none
