@@ -92,9 +92,19 @@ In regards to my problem-solving strategy, I used a rubber duck to explain to it
 
 ## Routes that the API expects
 
-## Set up instructions 
 
 ## Installation instructions
+
+1. Fork and clone the repository
+2. CD into the project and run 'git init'
+3. Empty the README and fill with your own content
+4. Create a .env file
+5. Add a key ENV with the value 'development'
+6. Run 'pipenv shell' to start up the virtual environment
+7. Run pipenv install django-rest-auth django-cors-headers python-dotenv dj-database-url in the django-env folder
+8. Create a psql database for your app
+9. Add the database name to the .env file using the key DB_NAME_DEV
+10. Generate a secret key using this tool and add it to the .env file using the key SECRET
 
 ## Problems to be solved in future iterations
 
